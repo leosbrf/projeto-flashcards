@@ -24,9 +24,7 @@ class DecksList extends Component {
         this.props.navigation.navigate('Deck', { key, deck: decks[key] })
     }
 
-    renderDeckListItem = (item) => {
-        //console.log(item);
-        const key = item.item
+    renderDeckListItem = ({ item: key }) => {
 
         const { decks } = this.props
         const deck = decks[key]

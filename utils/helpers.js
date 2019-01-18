@@ -8,8 +8,7 @@ export function clearLocalNotification() {
       .then(Notifications.cancelAllScheduledNotificationsAsync)
   }
   
-  function createNotification() {
-    return {
+  const notificationSettings = {
       title: 'Flashcards Quizzes',
       body: `Don't forget to start a quiz`,
       ios: {
@@ -22,7 +21,6 @@ export function clearLocalNotification() {
         vibrate: true
       }
     }
-  }
   
   export function setLocalNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
@@ -40,7 +38,7 @@ export function clearLocalNotification() {
                 tomorrow.setMinutes(0)
   
                 Notifications.scheduleLocalNotificationAsync(
-                  createNotification(),
+                  notificationSettings,
                   {
                     time: tomorrow,
                     repeat: 'day',

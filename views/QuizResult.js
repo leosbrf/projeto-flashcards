@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { black, gray, green, orange, red, white } from '../utils/colors'
 import { AntDesign } from '@expo/vector-icons'
 
-class QuizResult extends Component {
+class QuizResult extends PureComponent {
 
     handleTryAgain = () => {
         const { cards } = this.props.navigation.state.params

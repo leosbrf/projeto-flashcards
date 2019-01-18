@@ -5,12 +5,12 @@ const decks = (state = {}, action) => {
         case RECEIVE_DECKS:
             return {
                 ...state,
-                ...action.decks
+                ...action.payload
             }
         case SUBMIT_DECK:
             return {
                 ...state,
-                ...action.deck
+                ...action.payload
             }
         default:
             return state

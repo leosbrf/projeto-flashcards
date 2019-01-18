@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { submitDeck } from '../utils/api'
 import { submitDeck as submitDeckAction } from '../actions'
 import { gray, orange, white } from '../utils/colors'
+import { NavigationActions } from 'react-navigation'
 
 class DecksList extends Component {
 
@@ -31,7 +32,8 @@ class DecksList extends Component {
         submitDeck({ key, deck })
 
         //navigate to edit deck
-
+        this.props.navigation.navigate('Deck', { key, deck })
+        
     }
 
     render() {
