@@ -9,72 +9,91 @@ import Quiz from './views/Quiz'
 import QuizResult from './views/QuizResult'
 import { orange, white } from './utils/colors'
 
-const TabNavigator = createBottomTabNavigator({
-    DecksList: {
-      screen: DecksList,
-      navigationOptions: {
-        tabBarLabel: 'My Decks',
-        tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
-      }
-    },
-    NewDeck: {
-      screen: NewDeck,
-      navigationOptions: {
-        tabBarLabel: 'Create Deck',
-        tabBarIcon: ({ tintColor }) => <MaterialIcons name='playlist-add' size={30} color={tintColor} />
-      }
+const DeckListStack = createStackNavigator({
+  DecksListHome: {
+    screen: DecksList,
+    navigationOptions: {
+      title: 'My Decks'
     }
-  }, {
-      navigationOptions: {
-        header: null
-      },
-      tabBarOptions: {
-        activeTintColor: orange,
-        style: {
-          height: 56,
-          backgroundColor: white,
-          shadowColor: 'rgba(0,0,0,0.24)',
-          shadowOffset: {
-            width: 0,
-            height: 3
-          },
-          shadowRadius: 6,
-          shadowOpacity: 1
-        }
-      }
-    })
-  
-  const StackNavigator = createStackNavigator({
-    Home: {
-      screen: createAppContainer(TabNavigator),
-      navigationOptions: {
-        title: 'Home'
-      }
+  }
+})
+
+const NewDeckStack = createStackNavigator({
+  NewDeckHome: {
+    screen: NewDeck,
+    navigationOptions: {
+      title: 'Create Deck'
+    }
+  }
+})
+
+const TabNavigator = createBottomTabNavigator({
+  DecksList: {
+    screen: DeckListStack,
+    navigationOptions: {
+      tabBarLabel: 'My Decks',
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
+    }
+  },
+  NewDeck: {
+    screen: NewDeckStack,
+    navigationOptions: {
+      tabBarLabel: 'Create Deck',
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='playlist-add' size={30} color={tintColor} />
+    }
+  }
+}, {
+    navigationOptions: {
+      header: null
     },
-    Deck: {
-      screen: Deck,
-      navigationOptions: {
-        title: 'Deck'
-      }
-    },
-    AddCard: {
-      screen: AddCard,
-      navigationOptions: {
-        title: 'Add Card'
-      }
-    },
-    Quiz: {
-      screen: Quiz,
-      navigationOptions: {
-        title: 'Quiz'
-      }
-    },
-    QuizResult: {
-      screen: QuizResult,
-      navigationOptions: {
-        title: 'Quiz Results'
+    tabBarOptions: {
+      activeTintColor: orange,
+      style: {
+        height: 56,
+        backgroundColor: white,
+        shadowColor: 'rgba(0,0,0,0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 3
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
       }
     }
   })
-  
-  export const Container = createAppContainer(StackNavigator)
+
+const StackNavigator = createStackNavigator({
+  Home: {
+    screen: createAppContainer(TabNavigator),
+    navigationOptions: {
+      header: null
+    }
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      title: 'Deck'
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      title: 'Add Card'
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz'
+    }
+  },
+  QuizResult: {
+    screen: QuizResult,
+    navigationOptions: {
+      title: 'Quiz Results'
+    }
+  }
+})
+
+
+export const Container = createAppContainer(StackNavigator)
